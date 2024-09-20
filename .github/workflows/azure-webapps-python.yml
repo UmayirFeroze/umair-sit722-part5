@@ -30,11 +30,11 @@ jobs:
 
     - name: Build and push Docker images
       run: |
-        docker build -t ${{ secrets.AZURE_CONTAINER_REGISTRY_USERNAME }}/book_catalog:latest ./book_catalog
-        docker build -t ${{ secrets.AZURE_CONTAINER_REGISTRY_USERNAME }}/inventory_management:latest ./inventory_management
+        docker build -t ${{ secrets.AZURE_CONTAINER_REGISTRY }}/book_catalog:latest ./book_catalog
+        docker build -t ${{ secrets.AZURE_CONTAINER_REGISTRY }}/inventory_management:latest ./inventory_management
         echo ${{ secrets.AZURE_CONTAINER_REGISTRY_PASSWORD }} | docker login ${{ secrets.AZURE_CONTAINER_REGISTRY_USERNAME }} -u ${{ secrets.AZURE_CONTAINER_REGISTRY_USERNAME }} --password-stdin
-        docker push ${{ secrets.AZURE_CONTAINER_REGISTRY_USERNAME }}/book_catalog:latest
-        docker push ${{ secrets.AZURE_CONTAINER_REGISTRY_USERNAME }}/inventory_management:latest
+        docker push ${{ secrets.AZURE_CONTAINER_REGISTRY }}/book_catalog:latest
+        docker push ${{ secrets.AZURE_CONTAINER_REGISTRY }}/inventory_management:latest
 
     - name: Set up Kubernetes CLI
       uses: azure/setup-kubectl@v1
