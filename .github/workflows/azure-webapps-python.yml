@@ -32,7 +32,7 @@ jobs:
       run: |
         docker build -t ${{ secrets.AZURE_CONTAINER_REGISTRY }}/book_catalog:latest ./book_catalog
         docker build -t ${{ secrets.AZURE_CONTAINER_REGISTRY }}/inventory_management:latest ./inventory_management
-        echo ${{ secrets.AZURE_CONTAINER_REGISTRY_PASSWORD }} | docker login ${{ secrets.AZURE_CONTAINER_REGISTRY_USERNAME }} -u ${{ secrets.AZURE_CONTAINER_REGISTRY_USERNAME }} --password-stdin
+        echo ${{ secrets.AZURE_CONTAINER_REGISTRY_PASSWORD }} | docker login ${{ secrets.AZURE_CONTAINER_REGISTRY }} -u ${{ secrets.AZURE_CONTAINER_REGISTRY_USERNAME }} --password-stdin
         docker push ${{ secrets.AZURE_CONTAINER_REGISTRY }}/book_catalog:latest
         docker push ${{ secrets.AZURE_CONTAINER_REGISTRY }}/inventory_management:latest
 

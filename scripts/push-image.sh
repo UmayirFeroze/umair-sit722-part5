@@ -7,6 +7,10 @@ INVENTORY_MANAGEMENT_IMAGE="bmdk1.azurecr.io/inventory_management:latest"
 # Log in to Azure Container Registry
 echo "Logging in to Azure Container Registry..."
 az acr login --name bmdk1
+if [ $? -ne 0 ]; then
+    echo "Failed to log in to Azure Container Registry."
+    exit 1
+fi
 
 # Push Docker images to Azure Container Registry
 echo "Pushing Docker image for book_catalog..."
