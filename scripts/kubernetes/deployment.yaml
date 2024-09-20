@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: book-catalog
-        image: part4.azurecr.io/book_catalog:latest
+        image: bmdk1.azurecr.io/book_catalog:latest
         ports:
         - containerPort: 3000
         env:
@@ -39,7 +39,7 @@ spec:
     spec:
       containers:
       - name: inventory-management
-        image: part4.azurecr.io/inventory_management:latest
+        image: bmdk1.azurecr.io/inventory_management:latest
         ports:
         - containerPort: 3001
         env:
