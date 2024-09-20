@@ -17,7 +17,7 @@ EXPOSE 5000
 ENV NAME BookCatalog
 
 # Define environment variable with the provided database URL
-ENV DATABASE_URL postgresql://part4_3jkq_user:XLmosPoP6rpQgd8OEiEVPDjyQIastaVF@dpg-crlv85g8fa8c739ui180-a.oregon-postgres.render.com/part4_3jkq
+ENV DATABASE_URL postgresql://bmdk1_user:bMDZ1aXbqK7538kV3TVQvIASihrggiPE@dpg-crmg22q3esus73fsgkhg-a.oregon-postgres.render.com/bmdk1
 
 # Run app.py when the container launches
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "3000"]
