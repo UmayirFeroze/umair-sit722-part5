@@ -1,1 +1,77 @@
-# Your Solution
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: book-catalog
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: book-catalog
+  template:
+    metadata:
+      labels:
+        app: book-catalog
+    spec:
+      containers:
+      - name: book-catalog
+        image: part4.azurecr.io/book_catalog:latest
+        ports:
+        - containerPort: 3000
+        env:
+        - name: DATABASE_URL
+          value: "postgresql://part4_3jkq_user:XLmosPoP6rpQgd8OEiEVPDjyQIastaVF@dpg-crlv85g8fa8c739ui180-a.oregon-postgres.render.com/part4_3jkq"
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: inventory-management
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: inventory-management
+  template:
+    metadata:
+      labels:
+        app: inventory-management
+    spec:
+      containers:
+      - name: inventory-management
+        image: part4.azurecr.io/inventory_management:latest
+        ports:
+        - containerPort: 3001
+        env:
+        - name: DATABASE_URL
+          value: "postgresql://part4_3jkq_user:XLmosPoP6rpQgd8OEiEVPDjyQIastaVF@dpg-crlv85g8fa8c739ui180-a.oregon-postgres.render.com/part4_3jkq"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: book-catalog
+spec:
+  selector:
+    app: book-catalog
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+  type: LoadBalancer
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: inventory-management
+spec:
+  selector:
+    app: inventory-management
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3001
+  type: LoadBalancer
